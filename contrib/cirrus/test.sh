@@ -35,9 +35,7 @@ then
             echo "Linting & Validating from $GITVALIDATE_EPOCH to $GITVALIDATE_TIP"
             # Required for specifying our own commit range to git-validate.sh
             export TRAVIS=true
-            # The big 'Golint: can't lint 3 files...' warning puke, harmless and fixed in v1.20.0
-            showrun make lint
-            # TODO: This will fail if PR HEAD != upstream branch head
+            showrun make lint LINTFLAGS="--deadline 20m --color=always --verbose"
             showrun make validate
             ;;
         unit)
